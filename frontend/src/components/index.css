@@ -1,0 +1,86 @@
+@font-face { font-family: Circular; src: url('assets/сircular-font/Circular/CircularStd-Bold.otf') format("opentype"); } 
+
+body, html {
+    font-family: Circular, sans-serif; 
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(#1DB954,#191414 25%);
+    height: 100%;
+    margin: 0;
+}
+
+a:link { color:#191414; text-decoration: none;}
+a:visited { color:#191414; text-decoration: none;}
+a:focus { color:#191414; text-decoration: none;}
+a:hover { color:#191414; text-decoration: none;}
+a:active { color:#191414; text-decoration: none;}
+
+.login-container {
+    height: 80vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container{
+    width: 61%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.title {
+    font-size: 12rem;
+    padding-top: 2rem;
+    color: white;
+}
+
+.login {
+    font-size: 1rem;
+    padding-top: 1.25em;
+    padding-bottom: 1.25em;
+    padding-right: 4em;
+    padding-left: 4em;
+    border-radius: 4em;
+    background-color: #1DB954;
+    color: #191414;
+}
+
+.info-tab {
+    height: 100%;
+    width: 61%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-top: 3em;
+}
+
+.user-name {
+    font-size: 3rem;
+    color: white;
+}
+
+.profile-image-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.profile-image {
+    border-radius: 50%;
+    filter: drop-shadow(0 0 0.75rem #191414);
+    width: 75%;
+}
+
+.login:hover {
+    cursor: pointer;
+}

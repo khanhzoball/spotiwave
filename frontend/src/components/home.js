@@ -70,7 +70,7 @@ const Home = () => {
                 </div>
             </div>
             <div className="container">
-                <dive className="info-tab">
+                <dive className="info-tab" style={{display: loggedIn ? 'flex' : 'none' }}>
                     <div className="profile-image-box">
                         <img className="profile-image" src={imageURL} alt=""/>
                     </div>
@@ -90,6 +90,8 @@ const Home = () => {
                         </div>
                     </div>
                 </dive>
+                <div className="box-container">
+                </div>
             </div>
         </div>
     );

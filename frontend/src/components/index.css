@@ -53,6 +53,10 @@ a:active { color:#191414; text-decoration: none;}
     color: #191414;
 }
 
+.login:hover {
+    cursor: pointer;
+}
+
 .info-tab {
     height: 100%;
     width: 61%;
@@ -63,7 +67,6 @@ a:active { color:#191414; text-decoration: none;}
     justify-content: center;
     align-items: center;
     padding-top: 3em;
-    flex-wrap: wrap;
 }
 
 .right-tab {
@@ -116,6 +119,7 @@ a:active { color:#191414; text-decoration: none;}
     width: 75%;
 }
 
-.login:hover {
-    cursor: pointer;
+.box-container {
+    display: flex;
+    flex-wrap: wrap;
 }

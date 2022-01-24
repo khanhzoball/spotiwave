@@ -44,11 +44,14 @@ def refresh_tokens(user_id):
                 'client_secret': os.getenv('CLIENT_SECRET'), 
             }).json()
 
+            print("\n\n\n\n\n\n\n\n")
+            print("\n\n\n\n\n\n\n\n")
+
             update_tokens(
                 user_id = tokens.user_id,
-                access_token = token_response.access_token,
+                access_token = token_response.get('access_token'),
                 refresh_token = tokens.refresh_token,
-                expires_in = token_response.expires_in
+                expires_in = token_response.get('expires_in')
             )
     else:
         return 0

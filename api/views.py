@@ -75,7 +75,6 @@ def retrieve_info(request):
     refresh_tokens(user_id)
 
     access_token = get_tokens(user_id).access_token
-
     
     user_profile = get("https://api.spotify.com/v1/me", headers={
         'Authorization': "Bearer " + access_token,

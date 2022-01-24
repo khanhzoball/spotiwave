@@ -4,6 +4,8 @@ const Home = () => {
     const [loggedIn, setLoggedIn] = useState(false);
     const [imageURL, setImageURL] = useState("");
     const [userName, setUserName] = useState("");
+    const [term, setTerm] = useState("short_term");
+    const [type, setType] = useState("artists")
 
     useEffect( () => {
         const CURRENT_URL_QUERY = window.location.search;
@@ -72,7 +74,20 @@ const Home = () => {
                     <div className="profile-image-box">
                         <img className="profile-image" src={imageURL} alt=""/>
                     </div>
-                    <div className="user-name" id="user-name">
+                    <div className="right-tab">
+                        <div className="user-name" id="user-name">
+                        </div>
+                        <div className="term-buttons">
+                            <div className="term-button">
+                                Short Term
+                            </div>
+                            <div className="term-button">
+                                Medium Term
+                            </div>
+                            <div className="term-button">
+                                Long Term
+                            </div>
+                        </div>
                     </div>
                 </dive>
             </div>

@@ -5,7 +5,9 @@ const Home = () => {
     const [imageURL, setImageURL] = useState("");
     const [userName, setUserName] = useState("");
     const [term, setTerm] = useState("short_term");
-    const [type, setType] = useState("artists")
+    const [type, setType] = useState("tracks");
+    const [data, setData] = useState({})
+    const [box, setBox] = useState([])
 
     useEffect( () => {
         const CURRENT_URL_QUERY = window.location.search;
@@ -39,9 +41,10 @@ const Home = () => {
 
                 setImageURL(resJson.user_image_url);
                 setUserName(resJson.user_name);
+                setData(resJson)
+                setBox(resJson.user_top_tracks_short_term_arr.slice(0, 48))
                 console.log(userName)
                 user_name.innerHTML = resJson.user_name;
-                
             })
         }
     },[]);
@@ -57,7 +60,80 @@ const Home = () => {
             login.innerHTML = "Log in with Spotify"
         }
     },[loggedIn]);
+
+    const CHANGE_TYPE_ARTISTS = () => {
+        let change = false
+        if (type != "artists") {
+            setType("artists")
+            change = true
+        }
+
+        if (change) {
+            setBox(data[('user_top_' + "artists" + '_' + term + '_arr')].slice(0, 48))
+        }
+
+    }
+
+    const CHANGE_TYPE_TRACKS = () => {
+        let change = false
+        if (type != "tracks") {
+            setType("tracks")
+            change = true
+        }
+
+        if (change) {
+            console.log(('user_top_' + "tracks" + '_' + term + '_arr'))
+            setBox(data[('user_top_' + "tracks" + '_' + term + '_arr')].slice(0, 48))
+        }
+
+    }
+
     
+    const CHANGE_TERM_SHORT = () => {
+        let change = false
+        if (term != "short_term") {
+            setTerm("short_term")
+            change = true
+        }
+
+        if (change) {
+            setBox(data[('user_top_' + type + '_' + "short_term" + '_arr')].slice(0, 48))
+        }
+
+    }
+
+    const CHANGE_TERM_MEDIUM = () => {
+        let change = false
+        if (term != "medium_term") {
+            setTerm("medium_term")
+            change = true
+        }
+
+        if (change) {
+            setBox(data[('user_top_' + type + '_' + "medium_term" + '_arr')].slice(0, 48))
+        }
+
+    }
+
+    const CHANGE_TERM_LONG = () => {
+        let change = false
+        if (term != "long_term") {
+            setTerm("long_term")
+            change = true
+        }
+
+        if (change) {
+            setBox(data[('user_top_' + type + '_' + "long_term" + '_arr')].slice(0, 48))
+        }
+
+    }
+    
+    const BOX_MAPPER = (props) => {
+        console.log(document.documentElement.clientHeight)
+        return (
+            <img src={props.box.image_url} alt="" className="box-image"/>
+        )
+    }
 
 
     return (
@@ -69,8 +145,8 @@ const Home = () => {
                     <a href="http://127.0.0.1:8000/api/v1/login" id="login"></a>
                 </div>
             </div>
-            <div className="container">
-                <dive className="info-tab" style={{display: loggedIn ? 'flex' : 'none' }}>
+            <div className="container" style={{display: loggedIn ? 'flex' : 'none'}}>
+                <dive className="info-tab">
                     <div className="profile-image-box">
                         <img className="profile-image" src={imageURL} alt=""/>
                     </div>
@@ -78,19 +154,25 @@ const Home = () => {
                         <div className="user-name" id="user-name">
                         </div>
                         <div className="term-buttons">
-                            <div className="term-button">
-                                Short Term
-                            </div>
-                            <div className="term-button">
-                                Medium Term
-                            </div>
-                            <div className="term-button">
-                                Long Term
-                            </div>
+                            <button className="term-button" onClick={ () => CHANGE_TERM_SHORT()}>Recently</button>
+                            <button className="term-button" onClick={ () => CHANGE_TERM_MEDIUM()}>Past Year</button>
+                            <button className="term-button" onClick={ () => CHANGE_TERM_LONG()}>All Time</button>
                         </div>
                     </div>
                 </dive>
+                <div>
+                <div class="tab-container">
+                    <button className="tab-button" onClick={ () => CHANGE_TYPE_TRACKS()}>Top Tracks</button>
+                    <button className="tab-button" onClick={ () => CHANGE_TYPE_ARTISTS()}>Top Artists</button>
+                </div>
+                </div>
                 <div className="box-container">
+                {
+                    box.map( (box) => 
+                    {
+                        return <BOX_MAPPER box={box}/>
+                    })
+                }
                 </div>
             </div>
         </div>

@@ -54,6 +54,11 @@ def access_token_request(request):
     refresh_token = tokens_response.get('refresh_token')
     expires_in = tokens_response.get('expires_in')
 
+    print("\n\n\n\n\n\n\n\n")
+    print(access_token)
+    print("\n\n\n\n\n\n\n\n")
+
+    
     user_profile = get("https://api.spotify.com/v1/me", headers={
         'Authorization': "Bearer " + access_token,
         'Content-Type': 'application/json'
